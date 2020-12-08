@@ -1,0 +1,67 @@
+﻿@page "/priceCompare"
+<h3>PriceCompare</h3>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+
+
+<button class="" @onclick="IncrementCount">
+    <span class="btn btn-dark">click</span>
+</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Weight</th>
+            <th>ShopName</th>
+            <th>Rate</th>
+            <th>Total Payment</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <tr>
+            <td><input @bind="ProductName" /></td>
+            <td><input @bind="Weight" /></td>
+            <td><input @bind="ShopName" /></td>
+            <td><input @bind="Rate" /></td>
+            <td><input @bind="Payment" /></td>
+
+
+        </tr>
+
+    </tbody>
+</table>
+
+
+@code {
+    private String ProductName = "";
+    private Double Weight = 20;
+    private String ShopName = "";
+    private Double Rate = 0.02;
+    private double Payment;
+
+    void IncrementCount()
+    {
+        ChromeDriver ChromeDriver = new OpenQA.Selenium.Chrome.ChromeDriver();
+
+        ChromeDriver.Navigate().GoToUrl("https://www.woolworths.com.au/");
+        System.Threading.Thread.Sleep(4000);
+        ChromeDriver.FindElement(By.Id("headerSearch")).Clear();
+        System.Threading.Thread.Sleep(100);
+        ChromeDriver.FindElement(By.Id("headerSearch")).SendKeys(ProductName);
+        System.Threading.Thread.Sleep(100);
+        ChromeDriver.FindElement(By.ClassName("search-button-icon")).Click();
+
+        //ChromeDriver.Navigate().GoToUrl("https://www.coles.com.au/");
+        //System.Threading.Thread.Sleep(4000);
+        //ChromeDriver.FindElement(By.ClassName("search-toggle")).Click();
+        //System.Threading.Thread.Sleep(100);
+        //ChromeDriver.FindElement(By.ClassName("search-input")).Clear();
+        //ChromeDriver.FindElement(By.ClassName("search-input")).SendKeys(ProductName);
+        //System.Threading.Thread.Sleep(100);
+        //ChromeDriver.FindElement(By.ClassName("search-button")).Click();
+    }
+}
